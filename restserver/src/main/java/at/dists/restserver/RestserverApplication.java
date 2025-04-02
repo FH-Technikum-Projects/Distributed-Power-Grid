@@ -1,4 +1,4 @@
-package com.example.restserver;
+package at.dists.restserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

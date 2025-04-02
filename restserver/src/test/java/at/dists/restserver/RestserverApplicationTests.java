@@ -1,4 +1,4 @@
-package com.example.restserver;
+package at.dists.restserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
