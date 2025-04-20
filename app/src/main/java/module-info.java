@@ -10,6 +10,7 @@ module at.dists.app {
 
     requires java.net.http;
     requires org.json;
+    requires com.fasterxml.jackson.databind;
 
     opens at.dists.app to javafx.fxml;
     exports at.dists.app;
