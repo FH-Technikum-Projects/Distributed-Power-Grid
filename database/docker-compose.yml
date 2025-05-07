@@ -1,3 +1,4 @@
+version: '3.8'
 services:
   database:
     image: postgres:alpine
@@ -9,12 +10,16 @@ services:
       - POSTGRES_DB=energydb
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d
 
   rabbitmq:
     image: rabbitmq:management-alpine
     ports:
       - '5672:5672'
       - '15672:15672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=disysuser
+      - RABBITMQ_DEFAULT_PASS=disyspw
 
 volumes:
   pgdata:
