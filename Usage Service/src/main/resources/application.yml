@@ -1,13 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://postgres:5432/energydb
+    url: jdbc:postgresql://database:5432/energydb
     username: disysuser
     password: disyspw
     driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
