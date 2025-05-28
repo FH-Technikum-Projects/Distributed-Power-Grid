@@ -116,25 +116,32 @@ public class EnergyController {
 
     private void updateHistoricUI(String jsonText) {
         try {
-            JsonNode root = mapper.readTree(jsonText);
-            double prod = root.path("communityProduced").asDouble();
-            double used = root.path("communityUsed").asDouble();
-            double grid = root.path("gridUsed").asDouble();
+            JsonNode array = mapper.readTree(jsonText);
 
-            String sProd = String.format("%.3f kWh", prod);
-            String sUsed = String.format("%.3f kWh", used);
-            String sGrid = String.format("%.3f kWh", grid);
+            double totalProduced = 0;
+            double totalUsed = 0;
+            double totalGrid = 0;
+
+            for (JsonNode entry : array) {
+                totalProduced += entry.path("communityProduced").asDouble(0);
+                totalUsed     += entry.path("communityUsed").asDouble(0);
+                totalGrid     += entry.path("gridUsed").asDouble(0);
+            }
+
+            String sProd = String.format("%.3f kWh", totalProduced);
+            String sUsed = String.format("%.3f kWh", totalUsed);
+            String sGrid = String.format("%.3f kWh", totalGrid);
 
             Platform.runLater(() -> {
                 communityProducedLabel.setText(sProd);
                 communityUsedLabel.setText(sUsed);
                 gridUsedLabel.setText(sGrid);
             });
+
         } catch (Exception e) {
             showError("Parsing‑Fehler historical: " + e.getMessage());
         }
     }
-
 
     private void showError(String msg) {
         Platform.runLater(() -> {
