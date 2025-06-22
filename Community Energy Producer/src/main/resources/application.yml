@@ -2,5 +2,5 @@ spring:
   rabbitmq:
     host: rabbitmq
     port: 5672
-    username: EnergyProducer
-    password: guest
+    username: user
+    password: user
